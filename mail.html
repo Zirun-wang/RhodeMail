@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="static/vue/axios.min.js"></script>
+
+	<link rel="shortcut icon" href="opicon.ico">
+<meta name="viewport"
+	content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=no" />
+<title>明日方舟材料获取一图流</title>
+	<script src="static/vue/vue.js"></script>
+	<script src="static/vue/vue.global.js"></script>
+	<script src="static/vue/index.full.js"></script>
+</head>
+
+
+<body style="background: antiquewhite;">
+    <div id="app">
+        <div class="input_area">
+            
+           标题文本 <input class="input_size" v-model="title"/><br/>
+           标题图片<input class="input_size" v-model="url_role"/><br/>
+           来自<input class="input_size" v-model="body_title"/><br/>
+           <b><a>缩进请自行在文本前加&amp;emsp;或&amp;nbsp;</a></b><br/>
+           <b><a>隐藏某个文本或者图片在前方空白输入框输入hidden</a></b><br/>
+           第一行内容<input class="input_hidden" v-model="hidden_class"/><input class="input_size" v-model="text1"/><br/>
+           第二行内容<input class="input_hidden" v-model="hidden_class1"/><input class="input_size" v-model="text2"/><br/>
+           第三行内容<input class="input_hidden" v-model="hidden_class2"/><input class="input_size" v-model="text3"/><br/>
+           第四行内容<input class="input_hidden" v-model="hidden_class3"/><input class="input_size" v-model="text4"/><br/>
+           第五行内容<input class="input_hidden" v-model="hidden_class4"/><input class="input_size" v-model="text5"/><br/>
+           物品图片1<input class="input_hidden" v-model="hidden_class5"/><input class="input_size" v-model="url_item1"/><br/>
+           物品图片2<input class="input_hidden" v-model="hidden_class6"/><input class="input_size" v-model="url_item2"/><br/>
+           物品图片3<input class="input_hidden" v-model="hidden_class7"/><input class="input_size" v-model="url_item3"/><br/>
+           物品图片4<input class="input_hidden" v-model="hidden_class8"/><input class="input_size" v-model="url_item4"/><br/>
+           物品图片5<input class="input_hidden" v-model="hidden_class9"/><input class="input_size" v-model="url_item5"/><br/>
+            </div>
+	<div id="directions" style="height: 45px;font-size: 20px;text-align: center;padding-top: 15px;">
+	F12可深度修改内容
+	</div>
+	<div id="mail" style="background: url(/yituliu/static/img_egg/background.png);
+    padding: 176px 112px 176px 112px;
+    background-size: 100%;
+    width: 800px;
+    height: 416px;
+    margin: auto;">
+	    <div id="title_bar" style="height: 50px;
+    background: rgba(231,231,231,0.9);">
+			<div id="title_text" style="font-size: 26px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 126px;">
+			{{title}}
+			</div>
+			<div id="expire" style="width: 100px;
+    height: 50px;
+    position: absolute;
+    line-height: 50px;
+    margin-top: -50px;
+    margin-left: 660px;
+    font-weight: 600;">
+			3日后过期
+			</div>
+			<img src="/yituliu/static/img_egg/x.png" style="
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 750px;
+">
+			<img :src="url_role" style="width: 100px;
+    height: 100px;
+    position: absolute;
+    margin-top: -37px;
+    margin-left: 13px;
+    background: linear-gradient(rgba(50,50,50,1) -20px, rgba(130,130,130,1) ,rgba(50,50,50,1) 120px);box-shadow: 0px 0px 15px;">
+			
+	    </div>
+		
+		<div id="content" style="background: linear-gradient(rgba(170,170,170,1) -10px, rgba(231,231,231,0.75) 30px);
+    height: 366px;">
+			<div id="res_shell" style="
+    display: flex;
+">
+				<div id="res" style="background: rgba(0,0,0,1);
+    height: 22px;
+    margin: 13px 0px 7px 126px;
+    border-radius: 26px;
+    padding: 0px 12px 1px 12px;
+    ">
+			<t1 style="color:rgba(172,172,172,1);">来自</t1> <t2 t1 style="color:rgba(255,255,255,1);" >{{body_title}}</t2>
+				</div>
+			</div>
+			<div id="date" style="margin-left: 128px;
+    color: rgba(50,115,164,1);">
+			2022-6-28
+			</div>
+			
+			<div id="text" style="height: 180px;
+    font-size: 18px;
+    font-weight: 600;">
+				<div id="text0" style="margin-left: 25px;margin-top: 20px;">
+				</div>
+				<div :class="hidden_class" id="text1" style="margin: 5px 25px 0px 25px;" v-html="text1">
+				</div>
+				<div :class="hidden_class1" id="text2" style="margin: 5px 25px 0px 25px;"  v-html="text2">
+				</div>
+				<div :class="hidden_class2"  id="text3" style="margin: 5px 25px 0px 25px;" v-html="text3">
+				</div>
+				<div  :class="hidden_class3" id="text4" style="margin: 5px 25px 0px 25px;" v-html="text4">
+				</div>
+				<div  :class="hidden_class4" id="text5" style="margin: 5px 25px 0px 25px;" v-html="text5">
+				</div>
+			</div>
+			
+			<div id="attachment_shell" style="
+    display: flex;
+">
+				<div id="attachment" style="background: rgba(188,188,188,1);
+    height: 57px;
+    margin: auto;
+    border-radius: 7px;
+    vertical-align: middle;
+    display: flex;">
+					<img   src="/yituliu/static/img_egg/clip.png" style="width: 54px;
+    height: 56px;
+    margin-top: 0px;
+    border-radius: 7px;
+	">
+					<img  :class="hidden_class5" :src="url_item1" style="width: 100px;
+	    height: 100px;
+	    margin-top: -25px;
+	">
+					<img  :class="hidden_class6" :src="url_item2" style="width: 100px;
+	    height: 100px;
+	    margin-top: -25px;
+	">
+					<img  :class="hidden_class7" :src="url_item3" style="width: 100px;
+	    height: 100px;
+	    margin-top: -25px;
+	">
+					<img :class="hidden_class8"  :src="url_item4" style="width: 100px;
+	    height: 100px;
+	    margin-top: -25px;
+	">
+					<img :class="hidden_class9"  :src="url_item5" style="width: 100px;
+	    height: 100px;
+	    margin-top: -25px;
+	">			</div>
+	
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="directions" style="height: 60px;">
+	</div>
+	</div>
+	
+<script>
+var Main = {
+		data() {
+	    	return {
+	    	    title:"罗德岛邮件生成器",
+				body_title:"一图流",
+				hidden_class:"",
+				hidden_class1:"",
+				hidden_class2:"",
+				hidden_class3:"",
+				hidden_class4:"",
+				hidden_class5:"",
+				hidden_class6:"",
+				hidden_class7:"",
+				hidden_class8:"",
+				hidden_class9:"",
+				hidden_class10:"",
+			    
+				text1:"输入内容1",
+				text2:"输入内容2",
+				text3:"输入内容3",
+				text4:"输入内容4",
+				text5:"输入内容5",
+				url_role:"https://yituliu.site/role/头像_凯尔希.png",
+				url_item1:"https://yituliu.site/可食用立方体.png",
+				url_item2:"https://yituliu.site/可食用立方体.png",
+				url_item3:"https://yituliu.site/可食用立方体.png",
+				url_item4:"https://yituliu.site/可食用立方体.png",
+				url_item5:"https://yituliu.site/可食用立方体.png"
+				
+			};
+	    },created() {
+	    	this.visitAPI()
+	    },
+	    methods: {
+	    	visitAPI(){
+	    		  const url = "https://houduan.yituliu.site/category/addVisits/arkyituliu-mail";
+	                console.log(url)
+	                axios({
+	                    method: 'GET',
+	                    url: url
+	                }).then(response => {
+	                	
+	                })
+	                console.log()
+	    	},
+	    }
+	  };
+	const app = Vue.createApp(Main);
+	app.use(ElementPlus);
+	app.mount("#app")
+	</script>
+	
+<style>
+.input_area{
+    margin-left: 30% ;
+    font-size: 20px;
+}
+.input_hidden{
+     width: 80px;
+    height: 20px;
+    font-size: 20px;
+}
+.input_size{
+    width: 500px;
+    height: 20px;
+    font-size: 20px;
+}
+.hidden{
+    display: none;
+}
+</style>
+</body>
+
+
+
+</html>
